@@ -9,7 +9,6 @@ public class UnitSquadSpawn : MonoBehaviour
     public GameObject PlaceableSquad1;
     public GameObject PlaceableSquad2;
 
-    private float mouseWheelRotation;
     private int currentPrefabIndex = -1;
     private bool isReadyToPlaceSquadObject = false;
     private bool spawnPreviw = true;
