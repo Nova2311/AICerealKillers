@@ -1,25 +1,25 @@
-﻿using System;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitSquadSpawn : MonoBehaviour
-{
-    [SerializeField]
-    private GameObject[] placeableObjectPrefabs;
+public class SquadSpawn1 : MonoBehaviour {
+    // [SerializeField]
+    // private GameObject[] placeableObjectPrefabs = PlaceableSquad;
 
-    public GameObject PlaceableSquad1;
-    public GameObject PlaceableSquad2;
+    //Squad_Prefabs/Squad1
 
-    private float mouseWheelRotation;
-    private int currentPrefabIndex = -1;
+    private GameObject SelectedSquad = GameObject.Find("Infantry squad");            // Resources.Load("Squad_Prefabs/Squad1", GameObject) as GameObject;
+
+
+    //  private GameObject variableForPrefab = (GameObject) Resources.Load("prefabs/prefab1", typeof(GameObject));
     private bool isReadyToPlaceSquadObject = false;
     private bool spawnPreviw = true;
     private GameObject currentSquadSelected;
 
     private void Start()
     {
-       
+        Debug.Log("it worked");
     }
-
     private void Update()
     {
         HandleNewObject();
@@ -46,37 +46,26 @@ public class UnitSquadSpawn : MonoBehaviour
 
     private void HandleNewObject()
     {
-        
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            for (int i = 0; i < placeableObjectPrefabs.Length; i++)
+            if (spawnPreviw == true)
             {
-                if (spawnPreviw == true)
-                {
-                    PlaceableSquad1 = Instantiate(placeableObjectPrefabs[i]);
-                    currentPrefabIndex = i;
-                    spawnPreviw = false;
-                    currentSquadSelected = PlaceableSquad1;
-                    isReadyToPlaceSquadObject = true;
-                }
+                spawnPreviw = false;
+                currentSquadSelected = SelectedSquad;
+                isReadyToPlaceSquadObject = true;
             }
-  
-        }
+        
+
+
 
         if (isReadyToPlaceSquadObject == true)
         {
-            for (int i = 0; i < placeableObjectPrefabs.Length; i++)
-            {
+           
                 if (Input.GetMouseButtonDown(0))
                 {
-                    currentSquadSelected = Instantiate(placeableObjectPrefabs[i]);
-                    currentPrefabIndex = i;
+                    currentSquadSelected = SelectedSquad;
                 }
             }
-        }
-
     }
-    
+
 
     private void MoveCurrentObjectToMouse()
     {
@@ -86,7 +75,7 @@ public class UnitSquadSpawn : MonoBehaviour
         if (Physics.Raycast(ray, out hitInfo))
         {
             currentSquadSelected.transform.position = hitInfo.point;
-            
+
         }
     }
 }
