@@ -1,22 +1,21 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class UnitSquadSpawn : MonoBehaviour
-{
+public class UnitSquadSpawn : MonoBehaviour{
+    public static UnitSquadSpawn instance;
+
     [SerializeField]
     private GameObject[] placeableObjectPrefabs;
 
     public GameObject PlaceableSquad1;
     public GameObject PlaceableSquad2;
 
-    private int currentPrefabIndex = -1;
     private bool isReadyToPlaceSquadObject = false;
     private bool spawnPreviw = true;
-    private GameObject currentSquadSelected;
+    public GameObject currentSquadSelected;
 
     private void Start()
     {
-       
+        instance = this;
     }
 
     private void Update()
@@ -45,33 +44,29 @@ public class UnitSquadSpawn : MonoBehaviour
 
     private void HandleNewObject()
     {
-        
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            for (int i = 0; i < placeableObjectPrefabs.Length; i++)
+
+        if (currentSquadSelected == null)
+            return;
+
+            if (spawnPreviw == true)
             {
-                if (spawnPreviw == true)
-                {
-                    PlaceableSquad1 = Instantiate(placeableObjectPrefabs[i]);
-                    currentPrefabIndex = i;
-                    spawnPreviw = false;
-                    currentSquadSelected = PlaceableSquad1;
-                    isReadyToPlaceSquadObject = true;
-                }
+                PlaceableSquad1 = Instantiate(currentSquadSelected);
+                spawnPreviw = false;
+                isReadyToPlaceSquadObject = true;
             }
-  
-        }
+        
+            //check if were not playing
+                
+
 
         if (isReadyToPlaceSquadObject == true)
         {
-            for (int i = 0; i < placeableObjectPrefabs.Length; i++)
-            {
+            
                 if (Input.GetMouseButtonDown(0))
                 {
-                    currentSquadSelected = Instantiate(placeableObjectPrefabs[i]);
-                    currentPrefabIndex = i;
+                    Instantiate(currentSquadSelected);
                 }
-            }
+            
         }
 
     }

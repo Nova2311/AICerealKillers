@@ -12,6 +12,8 @@ public class UIManager: MonoBehaviour {
     public void TroopSelected(GameObject selected) {
         Debug.Log(selected.name);
 
+        UnitSquadSpawn.instance.currentSquadSelected = selected;
+
         /*
         show the placement green/red
 

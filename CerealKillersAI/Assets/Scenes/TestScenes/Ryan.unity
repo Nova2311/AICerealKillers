@@ -3462,8 +3462,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: TroopSelected
+      - m_Target: {fileID: 883042133}
+        m_MethodName: 
         m_Mode: 2
         m_Arguments:
           m_ObjectArgument: {fileID: 191354, guid: 1ff40f11e4e653d47a04071bca77c702,
@@ -3622,8 +3622,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   placeableObjectPrefabs:
   - {fileID: 199405845}
+  - {fileID: 199405845}
   PlaceableSquad1: {fileID: 0}
   PlaceableSquad2: {fileID: 0}
+  currentSquadSelected: {fileID: 0}
 --- !u!1001 &2076525788
 Prefab:
   m_ObjectHideFlags: 0
