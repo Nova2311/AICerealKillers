@@ -32,13 +32,13 @@ public class CapturePoint : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-      /* if (col.gameObject.tag == "Blue" && col.gameObject.tag == "Red")
-        {
-            tied = true;
-        }
-        else tied = false;
-        */
-
+        /* if (col.gameObject.tag == "Blue" && col.gameObject.tag == "Red")
+          {
+              tied = true;
+          }
+          else tied = false;
+          */
+        Debug.Log(col.gameObject.name);
         if (tied == false) // to check if both the team is in the circle if so the captureing stops until one team is eliminated
          {
             Debug.Log("wut");
@@ -47,7 +47,7 @@ public class CapturePoint : MonoBehaviour {
                 Debug.Log("wutt");
                 if (nutrual == true)
                 {
-                    CaptureScore = CaptureScore + Time.deltaTime * CaptureVariable;
+                    CaptureScore = CaptureScore +  CaptureVariable;
                     Debug.Log("wuttt");
                 }
                 else if (red == true)
@@ -67,27 +67,28 @@ public class CapturePoint : MonoBehaviour {
             }
         }
 
-        if (col.gameObject.tag == "Blue" && CaptureScore == 100 && nutrual == true)
-        {
-            nutrual = false;
-            blue = true;
-            Debug.Log("blue has captured a point");
-        }
-        if (col.gameObject.tag == "Red" && CaptureScore == 100 && nutrual == true)
-        {
-            nutrual = false;
-            red = true;
-            Debug.Log("red has captured a point");
-        }
-        if (col.gameObject.tag == "Blue" && CaptureScore == 0 && nutrual == true)
-        {
-            nutrual = false;
-            red = false;
-        }
-        if (col.gameObject.tag == "Red" && CaptureScore == 0 && nutrual == true)
-        {
-            nutrual = true;
-            blue = false;
-        }
+        //if (col.gameObject.tag == "Blue" && CaptureScore == 100 && nutrual == true)
+        //{
+        //    nutrual = false;
+        //    blue = true;
+        //    Debug.Log("blue has captured a point");
+        //}
+        //if (col.gameObject.tag == "Red" && CaptureScore == 100 && nutrual == true)
+        //{
+        //    nutrual = false;
+        //    red = true;
+        //    Debug.Log("red has captured a point");
+        //}
+        //if (col.gameObject.tag == "Blue" && CaptureScore == 0 && nutrual == true)
+        //{
+        //    nutrual = false;
+        //    red = false;
+        //}
+        //if (col.gameObject.tag == "Red" && CaptureScore == 0 && nutrual == true)
+        //{
+        //    nutrual = true;
+        //    blue = false;
+        //}
     }
+
 }
