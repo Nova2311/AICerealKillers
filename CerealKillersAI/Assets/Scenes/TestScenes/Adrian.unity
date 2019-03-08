@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -1144,6 +1144,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703755058}
   - component: {fileID: 703755057}
+  - component: {fileID: 703755059}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -1178,6 +1179,25 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &703755059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 703755056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c85a723593ba75498e74c4f3abad8ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  build1_prefab: {fileID: 1490100216981406, guid: d5c5bc8da18b78348a3c4c0efedff69f,
+    type: 2}
+  build2_prefab: {fileID: 1490100216981406, guid: efe45f171ce029a47ab4d91f1731d51a,
+    type: 2}
+  build3_prefab: {fileID: 1490100216981406, guid: a3f5d7d51c82da44d8ebf8579e622742,
+    type: 2}
+  build4_prefab: {fileID: 1490100216981406, guid: 569c14365ffc0e645adc3c9ecea7a50c,
+    type: 2}
 --- !u!1 &779596319
 GameObject:
   m_ObjectHideFlags: 0

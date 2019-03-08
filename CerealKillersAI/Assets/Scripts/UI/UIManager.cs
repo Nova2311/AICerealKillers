@@ -62,6 +62,7 @@ public class UIManager: MonoBehaviour {
 	public void BuildingSelected(GameObject selected)
 	{
 		Debug.Log(selected.name);
+        
 		foreach(string unit in selected.GetComponent<Building>().GetUnits())
 		{
 			EnableUnit(unit);
