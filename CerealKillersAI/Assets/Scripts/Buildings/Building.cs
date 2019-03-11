@@ -1,13 +1,21 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Building : MonoBehaviour {
 
-	protected List<string> units_;
+	protected List<UnitName> units_;
+	protected BuildingName name_;
 
-	public List<string> GetUnits()
+	public void EnableUnits(ref UIManager manager)
 	{
-		return units_;
+		foreach(UnitName unit in units_)
+		{
+			manager.EnableUnit(unit);
+		}
+	}
+
+	public BuildingName GetName()
+	{
+		return name_;
 	}
 }

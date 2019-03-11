@@ -4,20 +4,6 @@ using UnityEngine;
 
 public class BuildingManager : MonoBehaviour {
 
-    public enum Team
-    {
-        One,
-        Two
-    }
-
-    public enum BuildingName
-    {
-        Building1,
-        Building2,
-        Building3,
-        Building4
-    }
-
     public GameObject
         build1_prefab, build2_prefab,
         build3_prefab, build4_prefab;
@@ -47,54 +33,40 @@ public class BuildingManager : MonoBehaviour {
 
     public void AddBuilding(Team team, BuildingName name)
     {
-        Dictionary<BuildingName, Dictionary<string, GameObject>> selected_team;
-        GameObject instance;
         switch (team)
         {
-            case Team.One:
-                selected_team = team1_buildings_;
-                switch (name)
-                {
-                    case BuildingName.Building1:
-                        instance = Instantiate(build1_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                    case BuildingName.Building2:
-                        instance = Instantiate(build2_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                    case BuildingName.Building3:
-                        instance = Instantiate(build3_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                    case BuildingName.Building4:
-                        instance = Instantiate(build4_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                }
+            case Team.Red:
+				InstantiateBuilding(ref team1_buildings_, name);
                 break;
-            case Team.Two:
-                selected_team = team2_buildings_;
-                switch (name)
-                {
-                    case BuildingName.Building1:
-                        instance = Instantiate(build1_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                    case BuildingName.Building2:
-                        instance = Instantiate(build2_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                    case BuildingName.Building3:
-                        instance = Instantiate(build3_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                    case BuildingName.Building4:
-                        instance = Instantiate(build4_prefab);
-                        selected_team[name].Add(instance.name, instance);
-                        break;
-                }
-                break;
+            case Team.Blue:
+				InstantiateBuilding(ref team2_buildings_, name);
+				break;
         }
     }
+
+	private void InstantiateBuilding(ref Dictionary<BuildingName, Dictionary<string, GameObject>> team, BuildingName name)
+	{
+		GameObject instance;
+		switch (name)
+		{
+			case BuildingName.Building1:
+				instance = Instantiate(build1_prefab);
+				break;
+			case BuildingName.Building2:
+				instance = Instantiate(build2_prefab);
+				break;
+			case BuildingName.Building3:
+				instance = Instantiate(build3_prefab);
+				break;
+			case BuildingName.Building4:
+				instance = Instantiate(build4_prefab);
+				break;
+			default:
+				Debug.Log("Big problem happened, BuildingManager.InstantiateBuilding");
+				instance = null;
+				break;
+		}
+		team[name].Add(instance.name, instance);
+		instance.GetComponent<Building>().EnableUnits(ref ui_manager_);
+	}
 }

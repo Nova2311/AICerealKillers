@@ -1,16 +1,15 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 
 public class Build2 : Building {
 
 	public Build2()
 	{
-		units_ = new List<string>
+		units_ = new List<UnitName>
 		{
-			"Archer2_Btn",
-			"Spearman1_Btn",
-			"Spearman2_Btn"
+			UnitName.Archer2,
+			UnitName.Spear1,
+			UnitName.Spear2
 		};
+		name_ = BuildingName.Building2;
 	}
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -32,20 +33,37 @@ public class UIManager: MonoBehaviour {
     public GameObject teamPlacementPanel;
 	public GameObject troop_icons;
 
-	private Dictionary<string, Icon> icon_dict_;
+	private Team team_selected_;
+	private Dictionary<UnitName, Icon> teamred_icon_dict_, teamblue_icon_dict_;
+	private BuildingManager build_manager_;
 
 	private void Start()
 	{
-		icon_dict_ = new Dictionary<string, Icon>();
+		team_selected_ = Team.Red;
+		build_manager_ = GetComponent<BuildingManager>();
+		teamred_icon_dict_ = new Dictionary<UnitName, Icon>();
+		teamblue_icon_dict_ = new Dictionary<UnitName, Icon>();
 		Image[] images = troop_icons.GetComponentsInChildren<Image>();
 		Button[] buttons = troop_icons.GetComponentsInChildren<Button>();
-		for(int i = 0; i < buttons.Length; i++)
+		var units = Enum.GetValues(typeof(UnitName));
+
+		uint index = 0;
+		foreach(UnitName a in units)
 		{
-			Icon icon = new Icon(images[i + 1], buttons[i]);
-			if (i > 2) { icon.Disable(); }
-			icon_dict_.Add(buttons[i].name, icon);
+			Icon icon = new Icon(images[index + 1], buttons[index]);
+			if (index > 2) { icon.Disable(); }
+			teamred_icon_dict_.Add(a, icon);
+			index++;
 		}
-		
+
+		index = 0;
+		foreach (UnitName a in units)
+		{
+			Icon icon = new Icon(images[index + 1], buttons[index]);
+			if (index > 2) { icon.Disable(); }
+			teamblue_icon_dict_.Add(a, icon);
+			index++;
+		}
 	}
 
 	public void TroopSelected(GameObject selected) {
@@ -62,26 +80,49 @@ public class UIManager: MonoBehaviour {
 	public void BuildingSelected(GameObject selected)
 	{
 		Debug.Log(selected.name);
-        
-		foreach(string unit in selected.GetComponent<Building>().GetUnits())
+		build_manager_.AddBuilding(team_selected_, selected.GetComponent<Building>().GetName());
+	}
+
+	public void EnableUnit(UnitName name)
+	{
+		switch (team_selected_)
 		{
-			EnableUnit(unit);
+			case Team.Red:
+				teamred_icon_dict_[name].Enable();
+				break;
+			case Team.Blue:
+				teamblue_icon_dict_[name].Enable();
+				break;
 		}
 	}
 
-	public void EnableUnit(string name)
+	public void DisableUnit(UnitName name)
 	{
-		icon_dict_[name].Enable();
+		switch (team_selected_)
+		{
+			case Team.Red:
+				teamred_icon_dict_[name].Disable();
+				break;
+			case Team.Blue:
+				teamblue_icon_dict_[name].Disable();
+				break;
+		}
 	}
 
-	public void DisableUnit(string name)
-	{
-		icon_dict_[name].Disable();
-	}
-
-	public void ChangeTeam(int TeamID) {
-        teamIDNumber = TeamID;
-        Debug.Log(TeamID.ToString());
+	public void ChangeTeam(int team) {
+		switch (team)
+		{
+			case 0:
+				team_selected_ = Team.Red;
+				break;
+			case 1:
+				team_selected_ = Team.Blue;
+				break;
+			default:
+				Debug.Log("Undefined team in UIManager.ChangeTeam");
+				break;
+		}
+        Debug.Log(team_selected_.ToString());
     }
 
     public void StartGame() {
@@ -98,4 +139,9 @@ public class UIManager: MonoBehaviour {
 
 
     }
+
+	private void UpdateUI()
+	{
+
+	}
 }
