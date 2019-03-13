@@ -436,7 +436,7 @@ MonoBehaviour:
         m_MethodName: BuildingSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1490100216981406, guid: a3f5d7d51c82da44d8ebf8579e622742,
+          m_ObjectArgument: {fileID: 1315104023788104, guid: 09c9865c8301b4b4aa3e71cf0b2330db,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -1191,13 +1191,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c85a723593ba75498e74c4f3abad8ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  build1_prefab: {fileID: 1490100216981406, guid: d5c5bc8da18b78348a3c4c0efedff69f,
+  build1_prefab: {fileID: 1047058212857290, guid: 8fd418729bade9944ae088c4f0c42ecb,
     type: 2}
-  build2_prefab: {fileID: 1490100216981406, guid: efe45f171ce029a47ab4d91f1731d51a,
+  build2_prefab: {fileID: 1303170574090388, guid: f7a551c74415d264b93363a7ad54edbd,
     type: 2}
-  build3_prefab: {fileID: 1490100216981406, guid: a3f5d7d51c82da44d8ebf8579e622742,
+  build3_prefab: {fileID: 1315104023788104, guid: 09c9865c8301b4b4aa3e71cf0b2330db,
     type: 2}
-  build4_prefab: {fileID: 1490100216981406, guid: 569c14365ffc0e645adc3c9ecea7a50c,
+  build4_prefab: {fileID: 1058440869475206, guid: 8bf050bf9c264a24ab200ebfb9785556,
     type: 2}
 --- !u!1 &779596319
 GameObject:
@@ -1278,7 +1278,7 @@ MonoBehaviour:
         m_MethodName: BuildingSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1490100216981406, guid: 569c14365ffc0e645adc3c9ecea7a50c,
+          m_ObjectArgument: {fileID: 1058440869475206, guid: 8bf050bf9c264a24ab200ebfb9785556,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -2577,7 +2577,7 @@ MonoBehaviour:
         m_MethodName: BuildingSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1490100216981406, guid: d5c5bc8da18b78348a3c4c0efedff69f,
+          m_ObjectArgument: {fileID: 1047058212857290, guid: 8fd418729bade9944ae088c4f0c42ecb,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
@@ -3475,7 +3475,7 @@ MonoBehaviour:
         m_MethodName: BuildingSelected
         m_Mode: 2
         m_Arguments:
-          m_ObjectArgument: {fileID: 1490100216981406, guid: efe45f171ce029a47ab4d91f1731d51a,
+          m_ObjectArgument: {fileID: 1303170574090388, guid: f7a551c74415d264b93363a7ad54edbd,
             type: 2}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
