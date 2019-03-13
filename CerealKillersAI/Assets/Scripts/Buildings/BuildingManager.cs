@@ -45,8 +45,7 @@ public class BuildingManager : MonoBehaviour {
     }
 
 	private void InstantiateBuilding(
-		ref Dictionary<BuildingName, Dictionary<string,
-		GameObject>> team,
+		ref Dictionary<BuildingName, Dictionary<string, GameObject>> team,
 		BuildingName name)
 	{
 		GameObject instance;
@@ -71,5 +70,6 @@ public class BuildingManager : MonoBehaviour {
 		}
 		team[name].Add(instance.name, instance);
 		instance.GetComponent<Building>().EnableUnits(ref ui_manager_);
+		ui_manager_.SetIconActive(name, false);
 	}
 }

@@ -10,7 +10,7 @@ public abstract class Building : MonoBehaviour {
 	{
 		foreach(UnitName unit in units_)
 		{
-			manager.EnableUnit(unit);
+			manager.SetIconActive(unit, true);
 		}
 	}
 

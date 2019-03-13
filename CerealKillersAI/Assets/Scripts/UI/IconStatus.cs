@@ -124,7 +124,7 @@ public class IconStatus {
 
 		//Build team icon reference
 		red_status_ = new TeamIconStatus(units, buildings);
-		red_status_.SetActive(BuildingName.Building1, false);
+		red_status_.SetActive(BuildingName.Building4, false);
 		blue_status_ = new TeamIconStatus(units, buildings);
 		UpdateUI(Team.Red);
 	}

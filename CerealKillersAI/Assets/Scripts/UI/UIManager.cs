@@ -43,15 +43,16 @@ public class UIManager: MonoBehaviour {
 			selected.GetComponent<Building>().GetName());
 	}
 
-	public void EnableUnit(UnitName name)
+	public void SetIconActive(UnitName name, bool status)
 	{
-		icon_status_.SetActive(team_selected_, name, true);
+		icon_status_.SetActive(team_selected_, name, status);
 		icon_status_.UpdateUI(team_selected_);
 	}
 
-	public void DisableUnit(UnitName name)
+	public void SetIconActive(BuildingName name, bool status)
 	{
-		icon_status_.SetActive(team_selected_, name, false);
+		icon_status_.SetActive(team_selected_, name, status);
+		icon_status_.UpdateUI(team_selected_);
 	}
 
 	public void ChangeTeam(int team) {
