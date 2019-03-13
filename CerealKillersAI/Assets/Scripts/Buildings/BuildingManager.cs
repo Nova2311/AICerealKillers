@@ -33,18 +33,21 @@ public class BuildingManager : MonoBehaviour {
 
     public void AddBuilding(Team team, BuildingName name)
     {
-        switch (team)
-        {
-            case Team.Red:
+		switch (team)
+		{
+			case Team.Red:
 				InstantiateBuilding(ref team1_buildings_, name);
-                break;
-            case Team.Blue:
+				break;
+			case Team.Blue:
 				InstantiateBuilding(ref team2_buildings_, name);
 				break;
-        }
+		}
     }
 
-	private void InstantiateBuilding(ref Dictionary<BuildingName, Dictionary<string, GameObject>> team, BuildingName name)
+	private void InstantiateBuilding(
+		ref Dictionary<BuildingName, Dictionary<string,
+		GameObject>> team,
+		BuildingName name)
 	{
 		GameObject instance;
 		switch (name)
