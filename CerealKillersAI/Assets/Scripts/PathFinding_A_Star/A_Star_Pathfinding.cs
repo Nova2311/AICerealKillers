@@ -5,12 +5,13 @@ using System.Collections.Generic;
 public class A_Star_Pathfinding : MonoBehaviour
 {
     private Camera cam;
-    public Transform seeker;
+    private Transform seeker;
 
-    public Vector3 target;
-    public Grid grid;
+    private Vector3 target;
+    private Grid grid;
+    private Transform terrain;
 
-    public float speed;
+    public float speed = 5;
 
     void Awake()
     {
@@ -18,6 +19,8 @@ public class A_Star_Pathfinding : MonoBehaviour
         seeker = transform;
         target = transform.position;
         cam = Camera.main;
+        grid = GameObject.FindWithTag("Grid").GetComponent<Grid>();
+        terrain = GameObject.FindWithTag("Terrain").transform;
 
 
     }
@@ -32,26 +35,24 @@ public class A_Star_Pathfinding : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 target = hit.point;
-                //agent.SetDestination(hit.point);
 
             }
         }
-        FindPath(seeker.position, target);
+        FindPath(target);
 
     }
 
-    void FindPath(Vector3 startPos, Vector3 targetPos)
+    public void FindPath(Vector3 targetPos)
     {
-        Node startNode = grid.NodeFromWorldPoint(startPos);
-        Node targetNode = grid.NodeFromWorldPoint(targetPos);
+
+        Vector3 startPos = seeker.position;
+        target = targetPos;
+        Node startNode = grid.NodeFromWorldPoint(startPos - terrain.position);
+        Node targetNode = grid.NodeFromWorldPoint(targetPos - terrain.position);
 
         List<Node> openSet = new List<Node>();
         HashSet<Node> closedSet = new HashSet<Node>();
         openSet.Add(startNode);
-        // if (openSet.Count > 5)
-        // {
-        //     transform.position = Vector3.MoveTowards(transform.position, openSet[5].worldPosition, Time.deltaTime * speed);
-        // }
 
         while (openSet.Count > 0)
         {
