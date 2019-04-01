@@ -27,22 +27,25 @@ public class A_Star_Pathfinding : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButton(0))
-        {
-            Ray ray = cam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
+        // if (Input.GetMouseButton(0))
+        // {
+        //     Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        //     RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit))
-            {
-                target = hit.point;
+        //     if (Physics.Raycast(ray, out hit))
+        //     {
+        //         target = hit.point;
 
-            }
-        }
+        //     }
+        // }
         FindPath(target);
 
     }
-
-    public void FindPath(Vector3 targetPos)
+    public void UsePathFinding(Vector3 destination)
+    {
+        target = destination;
+    }
+    private void FindPath(Vector3 targetPos)
     {
 
         Vector3 startPos = seeker.position;
