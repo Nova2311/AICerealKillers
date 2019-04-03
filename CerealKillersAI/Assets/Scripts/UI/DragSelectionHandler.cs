@@ -9,8 +9,8 @@ public class DragSelectionHandler : MonoBehaviour, IBeginDragHandler, IDragHandl
     [SerializeField]
     Image selectionBoxImage;
 
-    Vector2 startPosition;
-    Rect selectionRect;
+    public Vector2 startPosition;
+    public Rect selectionRect;
 
     public void OnBeginDrag(PointerEventData eventData) {
         if (!Input.GetKey(KeyCode.LeftControl) && !Input.GetKey(KeyCode.RightControl)) {

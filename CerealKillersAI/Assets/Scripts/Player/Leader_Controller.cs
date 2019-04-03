@@ -25,8 +25,6 @@ public class Leader_Controller : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 pathFinding.UsePathFinding(hit.point);
-
-
             }
         }
     }
