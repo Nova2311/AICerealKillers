@@ -66,6 +66,8 @@ public class Unit : MonoBehaviour, ISelectHandler, IPointerClickHandler, IDesele
 
             if (!unit.isLeader) {
                 unit.GetComponent<Subordinate_Controller>().leader = leader.transform;
+                unit.gameObject.AddComponent<FlockBehaviour>();
+                unit.GetComponent<FlockBehaviour>().controller = GameObject.Find("Managers").GetComponent<FlockingController>();
             }
 
         }

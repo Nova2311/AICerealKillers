@@ -11,7 +11,7 @@ public class A_Star_Pathfinding : MonoBehaviour
     private Grid grid;
     private Transform terrain;
 
-    public float speed = 5;
+    public float speed = 3;
 
     void Awake()
     {
