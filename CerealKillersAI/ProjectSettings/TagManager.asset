@@ -9,6 +9,7 @@ TagManager:
   - Unit
   - Grid
   - Terrain
+  - Collider
   layers:
   - Default
   - TransparentFX

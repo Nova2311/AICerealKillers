@@ -8,8 +8,8 @@ public class CapturePoint : MonoBehaviour {
     public float redCaptureScore = 0;
     private float coolDown = 3;
 
-    private bool blueOnPoint = false;
-    private bool redOnPoint = false;
+    public bool blueOnPoint = false;
+    public bool redOnPoint = false;
     public bool contested = false;
 
     public bool neutral = true;

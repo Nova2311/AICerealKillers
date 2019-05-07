@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
 
 public class UnitBehaviour : MonoBehaviour
 {
@@ -11,24 +12,37 @@ public class UnitBehaviour : MonoBehaviour
         Engage,
         Attack,
         AttackMove,
-        Capture,
         Move
     }
 
+    public enum Objective
+    {
+        Capture,
+        Guard
+    }
+
+    //public GameObject red_gold, blue_gold, red_base, blue_base;
+    public Vector3 target_pos;
+    public UnitState start_state;
     private UnitState state_;
+    private Objective objective_;
+    private CapturePoint red_gold_, blue_gold_;
     private float speed_;
     private float los_length_;
     private float attack_range_;
     private Vector3 target_position_;
-    private GameObject enemy_target_;
+    private GameObject enemy_target_, capture_target_;
+    private bool guarding_;
 
     // Use this for initialization
     void Start()
     {
-        state_ = UnitState.AttackMove;
+        state_ = start_state;
+        target_position_ = target_pos;
         speed_ = 10.0f;
         los_length_ = 30.0f;
         enemy_target_ = null;
+        guarding_ = false;
     }
 
     // Update is called once per frame
@@ -46,13 +60,10 @@ public class UnitBehaviour : MonoBehaviour
                 Attack();
                 break;
             case UnitState.AttackMove:
-                AttackMove(new Vector3(0.0f, 0.0f, 0.0f));
-                break;
-            case UnitState.Capture:
-                Capture();
+                Move(target_position_);
                 break;
             case UnitState.Move:
-                Move();
+                Move(target_position_);
                 break;
         }
     }
@@ -60,6 +71,12 @@ public class UnitBehaviour : MonoBehaviour
     public UnitState GetState()
     {
         return state_;
+    }
+
+    public void SetCaptureTarget(GameObject target)
+    {
+        capture_target_ = target;
+        target_position_ = target.transform.position;
     }
 
     private void Idle()
@@ -70,7 +87,8 @@ public class UnitBehaviour : MonoBehaviour
         {
             Debug.Log("Spotted object");
             state_ = UnitState.Engage;
-            enemy_target_ = hit.transform.gameObject;
+            enemy_target_ = hit.transform.Find("UnitHitbox").gameObject;
+
         }
     }
 
@@ -82,43 +100,36 @@ public class UnitBehaviour : MonoBehaviour
 
     private void Attack()
     {
+        //placeholder for attack animation
         gameObject.transform.Rotate(new Vector3(0.0f, speed_ * 100.0f * Time.deltaTime, 0.0f));
     }
 
-    private void AttackMove(Vector3 target_position)
+    private void Move(Vector3 target_position)
     {
         float step = speed_ * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, target_position, step);
-    }
-
-    private void Capture()
-    {
-
-    }
-
-    private void Move()
-    {
-
     }
 
     private void OnTriggerEnter(Collider other)
     {
         switch (state_)
         {
-            case UnitState.Engage:
-                if (other.gameObject == enemy_target_)
-                {
-                    Debug.Log("Target reached");
-                    state_ = UnitState.Attack;
-                }
-                break;
             case UnitState.AttackMove:
-                if (other.tag == "Blue")
+                if ((other.tag == "Collider" && other.name == "UnitHitbox") && gameObject.name == "VisualRange")
                 {
                     Debug.Log("Target found");
                     state_ = UnitState.Engage;
                     enemy_target_ = other.gameObject;
                 }
+                break;
+            case UnitState.Engage:
+                //if (gameObject.name == "UnitHitbox" && other.name == "UnitHitbox")
+                //{
+                //    Debug.Log("Target reached");
+                //    state_ = UnitState.Attack;
+                //}
+                Debug.Log(transform. + ", " + other.name);
+                EditorApplication.isPaused = true;
                 break;
         }
     }
