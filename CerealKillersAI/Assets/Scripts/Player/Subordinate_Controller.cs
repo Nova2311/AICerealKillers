@@ -22,7 +22,7 @@ public class Subordinate_Controller : MonoBehaviour
     void Update()
     {
             //FlockingController.instance.BuildGridPattern();
-        pathFinding.UsePathFinding(FlockingController.instance.UnitPosition(leader.position, this.gameObject));
+        //pathFinding.UsePathFinding(FlockingController.instance.UnitPosition(leader.position, this.gameObject));
 
         //if (Vector3.Distance(leader.position, transform.position) < maxLeaderDistance)
         //{
