@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Subordinate_Controller : MonoBehaviour
 {
-    public float maxLeaderDistance = 3f;
+    public float maxLeaderDistance = 10f;
 
     public Transform leader;
-    private A_Star_Pathfinding pathFinding;
+    public A_Star_Pathfinding pathFinding;
 
     public bool startMoving = false;
 
     public Vector3 newPosition;
+    public bool startFlock = false;
+
     // Use this for initialization
     void Start()
     {
@@ -21,16 +23,14 @@ public class Subordinate_Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            //FlockingController.instance.BuildGridPattern();
-        pathFinding.UsePathFinding(FlockingController.instance.UnitPosition(leader.position, this.gameObject));
-
-        //if (Vector3.Distance(leader.position, transform.position) < maxLeaderDistance)
-        //{
-        // DO FLOCKING STUFF HERE
-        //}
-        //else
-        //{
-        //}
+        if (Vector3.Distance(leader.position, transform.position) < maxLeaderDistance) {
+            //DO FLOCKING STUFF HERE
+            startFlock = true;
+        } else {
+            //move towards the leader
+            startFlock = false;
+            pathFinding.UsePathFinding(leader.position);
+        }
     }
     private void FixedUpdate()
     {

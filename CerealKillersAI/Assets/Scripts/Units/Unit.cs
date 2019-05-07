@@ -45,7 +45,7 @@ public class Unit : MonoBehaviour, ISelectHandler, IPointerClickHandler, IDesele
 
             Destroy(selectable.GetComponent<Leader_Controller>());
             Destroy(selectable.GetComponent<Subordinate_Controller>());
-            
+            Destroy(selectable.GetComponent<FlockingBehaviour>());       
         }
         hasLeader = false;
         FlockingController.instance.RemoveAllUnits();
@@ -66,6 +66,8 @@ public class Unit : MonoBehaviour, ISelectHandler, IPointerClickHandler, IDesele
 
             if (!unit.isLeader) {
                 unit.GetComponent<Subordinate_Controller>().leader = leader.transform;
+                unit.gameObject.AddComponent<FlockingBehaviour>();
+                unit.GetComponent<FlockingBehaviour>().controller = GameObject.Find("Managers").GetComponent<FlockingController>();
             }
 
         }
